@@ -159,7 +159,7 @@ public class GameGUI extends JFrame {
 
 		mainPanel.add(exit);
 		typer = new TextTypingRobot(
-				"Welcome to Battleship!Your ships have been placed on the board.You can now start the game",
+				"Welcome to Battleship!Your ships have been placed on the board.You can now start the game!",
 				statusText);
 
 	}
