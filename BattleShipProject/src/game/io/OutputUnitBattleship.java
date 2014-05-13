@@ -35,11 +35,6 @@ public class OutputUnitBattleship implements OutputUnit {
 					paint(enemyBoard.get(bl.getId()), bl.getPiece());
 			}
 		}
-
-		System.out.println(state.getPlayerInTurn().getName() + "!hej");
-		if (state.hasEnded())
-			System.out.println(state.getWinner().getName() + "hej");
-
 	}
 
 	private void paint(GameLabelBlank gameLabelBlank, GamePiece piece) {
