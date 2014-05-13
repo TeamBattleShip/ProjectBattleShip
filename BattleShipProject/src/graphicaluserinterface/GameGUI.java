@@ -169,11 +169,8 @@ public class GameGUI extends JFrame {
 		this.location = location;
 
 		typer.stop();
-		if (output.hasEnded())
-			typer = new TextTypingRobot(output.getWinner()
-					+ " has won!\nCongratulations", statusText);
-		else if (input.makeMove()) {
 
+		if (input.makeMove() && !output.hasEnded()) {
 			if (location.get(0).charAt(0) == 'P') {
 				if (playerBoard.get(location.get(0)).getColor()
 						.equals(new Color(0, 255, 0, 0x50)))
@@ -196,7 +193,10 @@ public class GameGUI extends JFrame {
 							statusText);
 			}
 
-		} else {
+		} else if (output.hasEnded())
+			typer = new TextTypingRobot(output.getWinner()
+					+ " has won!\nCongratulations!!!!!!", statusText);
+		else {
 			typer = new TextTypingRobot("It's not your turn!", statusText);
 		}
 	}
