@@ -159,7 +159,7 @@ public class GameGUI extends JFrame {
 
 		mainPanel.add(exit);
 		typer = new TextTypingRobot(
-				"Welcome to Battleship!Please drag your ships to the board and place them where you want them to be located",
+				"Welcome to Battleship!Your ships has been placed on the board.You can now start the game",
 				statusText);
 
 	}
@@ -167,11 +167,12 @@ public class GameGUI extends JFrame {
 	@SuppressWarnings("deprecation")
 	public void setNextMove(ArrayList<String> location) {
 		this.location = location;
-		
-			typer.stop();
-		if(output.hasEnded())
-			typer = new TextTypingRobot(output.getWinner() + " has won!\nCongratulations", statusText);
-		if (input.makeMove()) {
+
+		typer.stop();
+		if (output.hasEnded())
+			typer = new TextTypingRobot(output.getWinner()
+					+ " has won!\nCongratulations", statusText);
+		else if (input.makeMove()) {
 
 			if (location.get(0).charAt(0) == 'P') {
 				if (playerBoard.get(location.get(0)).getColor()
