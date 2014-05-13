@@ -20,9 +20,9 @@ public class InputUnitBattleship extends InputUnit {
 
 	public boolean makeMove() {
 		boolean makeMyMove = gui.getNextMove().get(0).charAt(0) == state
-				.getPlayerInTurn().getName().charAt(0) && !state.hasEnded();
+				.getPlayerInTurn().getName().charAt(0)
+				&& !state.hasEnded();
 		if (makeMyMove) {
-			System.out.println("hej");
 			notifyListenersOfMove(new Move(getPlayer(), getPiece(),
 					makeDestinations()));
 		}
