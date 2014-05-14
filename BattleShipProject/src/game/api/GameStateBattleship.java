@@ -143,7 +143,7 @@ public class GameStateBattleship implements GameState, InputListener,
 					}
 
 			move.execute();
-
+System.out.println("Execute");
 			turnCounter++;
 			message = "";
 			return true;

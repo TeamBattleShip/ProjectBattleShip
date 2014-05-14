@@ -46,7 +46,7 @@ public class InputUnitBattleshipTest {
 		when(board.getLocations()).thenReturn(
 				new ArrayList<BoardLocation>(Arrays.asList(new BoardLocation(
 						"PA1"), new BoardLocation("PA2"), new BoardLocation(
-						"PA2"))));
+						"PA3"))));
 		input.setup(state);
 
 	}

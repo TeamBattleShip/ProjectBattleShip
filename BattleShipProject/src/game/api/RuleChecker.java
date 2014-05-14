@@ -11,13 +11,15 @@ public class RuleChecker {
 			for (BoardLocation bl : move.getDestinations()) {
 				for (BoardLocation blstate : state.getBoard().getLocations())
 					if (bl.getId().equals(blstate.getId())) {
-						if (blstate.getPiece() == null)
+						if (blstate.getPiece() == null) {
+							// System.out.println(blstate.getPiece() + " " +
+							// blstate.getId());
 							temp = true;
-						else if (blstate.getPiece().getId().equals("S")
-								&& bl.getPiece().getId().equals("B")) {
-							temp = true;
-						} else
+						} else {
+							System.out.println(blstate.getPiece() + " "
+									+ blstate.getId() + move.getPlayer().getName());
 							return false;
+						}
 					}
 			}
 		} else {
