@@ -195,7 +195,7 @@ public class GameGUI extends JFrame {
 
 		} else if (output.hasEnded())
 			typer = new TextTypingRobot(output.getWinner()
-					+ " has won!\nCongratulations!!!!!!", statusText);
+					+ " has won!\nCongratulations!", statusText);
 		else {
 			typer = new TextTypingRobot("It's not your turn!", statusText);
 		}

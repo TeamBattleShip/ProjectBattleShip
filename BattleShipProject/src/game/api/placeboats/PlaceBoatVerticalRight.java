@@ -18,7 +18,6 @@ public class PlaceBoatVerticalRight implements PlaceBoatStrategy {
 
 	@Override
 	public ArrayList<BoardLocation> getLocations(GameState state) {
-		// TODO Auto-generated method stub
 		return placeShip(state);
 	}
 
@@ -26,11 +25,13 @@ public class PlaceBoatVerticalRight implements PlaceBoatStrategy {
 		ArrayList<BoardLocation> locations = new ArrayList<BoardLocation>();
 		char player = state.getPlayerInTurn().getName().charAt(0);
 		for (int x = xIndex; x < shipSize + xIndex; x++)
-			for (BoardLocation bl : state.getBoard().getLocations())
+			for (BoardLocation bl : state.getBoard().getLocations()) {
+
 				if (bl.getId().equals(player + coordinates[yIndex] + x)) {
 					locations.add(bl);
-				
 				}
+
+			}
 		return locations;
 	}
 }

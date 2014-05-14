@@ -36,6 +36,7 @@ public class PlaceBoatContext {
 	}
 
 	public PlaceBoatStrategy getPlaceBoatStrategy() {
+
 		return container.get(key);
 	}
 }

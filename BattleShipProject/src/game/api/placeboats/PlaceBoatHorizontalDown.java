@@ -25,10 +25,11 @@ public class PlaceBoatHorizontalDown implements PlaceBoatStrategy {
 		ArrayList<BoardLocation> locations = new ArrayList<BoardLocation>();
 		char player = state.getPlayerInTurn().getName().charAt(0);
 		for (int y = yIndex; y < shipSize + yIndex; y++)
-			for (BoardLocation bl : state.getBoard().getLocations())
-				if (bl.getId().equals(player + coordinates[y] + xIndex)) {
+			for (BoardLocation bl : state.getBoard().getLocations()) {
+				if (bl.getId().equals(player + coordinates[y] + xIndex)) {					
 					locations.add(bl);
 				}
+			}
 		return locations;
 	}
 
