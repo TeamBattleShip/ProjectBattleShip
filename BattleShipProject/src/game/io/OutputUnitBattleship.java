@@ -64,4 +64,8 @@ public class OutputUnitBattleship implements OutputUnit {
 	public String getWinner() {	
 		return state.getWinner().getName();
 	}
+
+	public String getMessage() {	
+		return state.getMessage();
+	}
 }

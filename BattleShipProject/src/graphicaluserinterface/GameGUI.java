@@ -170,35 +170,9 @@ public class GameGUI extends JFrame {
 
 		typer.stop();
 
-		if (input.makeMove() && !output.hasEnded()) {
-			if (location.get(0).charAt(0) == 'P') {
-				if (playerBoard.get(location.get(0)).getColor()
-						.equals(new Color(0, 255, 0, 0x50)))
-					typer = new TextTypingRobot("Player firing at: "
-							+ location.get(0).substring(1) + "\nHit!",
-							statusText);
-				else
-					typer = new TextTypingRobot("Player firing at: "
-							+ location.get(0).substring(1) + "\nMiss!",
-							statusText);
-			} else {
-				if (enemyBoard.get(location.get(0)).getColor()
-						.equals(new Color(0, 255, 0, 0x50)))
-					typer = new TextTypingRobot("Enemy firing at: "
-							+ location.get(0).substring(1) + "\nHit!",
-							statusText);
-				else
-					typer = new TextTypingRobot("Enemy firing at: "
-							+ location.get(0).substring(1) + "\nMiss!",
-							statusText);
-			}
+		input.makeMove();
+		typer = new TextTypingRobot(output.getMessage(), statusText);
 
-		} else if (output.hasEnded())
-			typer = new TextTypingRobot(output.getWinner()
-					+ " has won!\nCongratulations!!!!!!", statusText);
-		else {
-			typer = new TextTypingRobot("It's not your turn!", statusText);
-		}
 	}
 
 	public void update() {

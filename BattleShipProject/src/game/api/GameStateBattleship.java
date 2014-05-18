@@ -48,15 +48,33 @@ public class GameStateBattleship implements GameState, InputListener,
 
 	}
 
+	public GameStateBattleship(int test) {
+		ArrayList<BoardLocation> locations = new ArrayList<BoardLocation>();
+		final String[] coordinates = { "A", "B", "C", "D", "E", "F", "G", "H",
+				"I", "J" };
+		makeBoardLocations(locations, coordinates);
+
+		board = new Board(locations);
+
+		players = new ArrayList<Player>();
+		ArrayList<GamePiece> pieces = new ArrayList<GamePiece>();
+		pieces.add(new GamePiece("S"));
+		pieces.add(new GamePiece("B"));
+
+		players.add(new Player("Player", pieces));
+		players.add(new Player("Enemy", pieces));
+		ruleChecker = new RuleChecker();
+	}
+
 	private void makeBoardLocations(ArrayList<BoardLocation> locations,
 			final String[] coordinates) {
 		for (String s : coordinates)
-			for (int i = 1; i < 12; i++) {
+			for (int i = 1; i < 11; i++) {
 				locations.add(new BoardLocation("E" + s + i));
 			}
 
 		for (String s : coordinates)
-			for (int i = 1; i < 12; i++) {
+			for (int i = 1; i < 11; i++) {
 				locations.add(new BoardLocation("P" + s + i));
 			}
 	}
@@ -90,7 +108,8 @@ public class GameStateBattleship implements GameState, InputListener,
 
 	@Override
 	public Player getLastPlayer() {
-		return players.get((turnCounter - 1) % 2);
+
+		return players.get(((turnCounter - 1) + 2) % 2);
 	}
 
 	@Override
@@ -123,7 +142,6 @@ public class GameStateBattleship implements GameState, InputListener,
 
 	@Override
 	public Boolean proposeMove(Move move) {
-
 		if (ruleChecker.isValidMove(move, this)) {
 			if (move.getDestinations().size() == 1)
 				for (BoardLocation bl : board.getLocations())
@@ -143,9 +161,8 @@ public class GameStateBattleship implements GameState, InputListener,
 					}
 
 			move.execute();
-System.out.println("Execute");
 			turnCounter++;
-			message = "";
+			message = "bajs";
 			return true;
 		}
 		message = "Wrong move dude..!";
@@ -165,14 +182,17 @@ System.out.println("Execute");
 
 	@Override
 	public void inputOccured(Move move) {
+		System.out.println("-------");
 		proposeMove(move);
 	}
 
 	private boolean placeShips(int shipSize, int xIndex, int yIndex,
 			boolean vertical) {
-		return proposeMove(new Move(getPlayerInTurn(), getPlayerInTurn()
-				.getPieces().get(0), new PlaceBoatContext(vertical, xIndex,
-				yIndex, shipSize).getPlaceBoatStrategy().getLocations(this)));
+		Move m = new Move(getPlayerInTurn(), getPlayerInTurn().getPieces().get(
+				0), new PlaceBoatContext(vertical, xIndex, yIndex, shipSize)
+				.getPlaceBoatStrategy().getLocations(this));
+
+		return proposeMove(m);
 	}
 
 }

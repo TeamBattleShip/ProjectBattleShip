@@ -22,7 +22,7 @@ public class PlaceBoatVerticalLeft implements PlaceBoatStrategy {
 	}
 
 	private ArrayList<BoardLocation> placeShip(GameState state) {
-		char player = state.getPlayerInTurn().getName().charAt(0);
+		char player = state.getLastPlayer().getName().charAt(0);
 		int temp2 = xIndex - shipSize;
 		ArrayList<BoardLocation> locations = new ArrayList<BoardLocation>();
 		for (int x = xIndex; x > temp2; x--) {

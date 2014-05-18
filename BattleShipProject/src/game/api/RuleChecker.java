@@ -6,18 +6,21 @@ import game.impl.Move;
 public class RuleChecker {
 
 	public boolean isValidMove(Move move, GameState state) {
+		if(move == null)
+			return false;
+		if (!(move.getPlayer().getName()
+				.equals(state.getPlayerInTurn().getName()) && (move
+				.getDestinations().get(0).getId().charAt(0) == state
+				.getLastPlayer().getName().charAt(0))))
+			return false;
 		boolean temp = false;
 		if (move.getDestinations().size() > 1) {
 			for (BoardLocation bl : move.getDestinations()) {
 				for (BoardLocation blstate : state.getBoard().getLocations())
 					if (bl.getId().equals(blstate.getId())) {
 						if (blstate.getPiece() == null) {
-							// System.out.println(blstate.getPiece() + " " +
-							// blstate.getId());
 							temp = true;
 						} else {
-							System.out.println(blstate.getPiece() + " "
-									+ blstate.getId() + move.getPlayer().getName());
 							return false;
 						}
 					}
@@ -28,12 +31,11 @@ public class RuleChecker {
 
 					if (bl.getPiece() != null
 							&& !bl.getPiece().getId().equals("S")) {
-						temp = false;
+						return false;
 					} else
-						temp = true;
+						return true;
 				}
 		}
-
 		return temp;
 	}
 

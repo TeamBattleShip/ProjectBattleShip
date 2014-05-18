@@ -24,7 +24,7 @@ public class PlaceBoatHorizontalUp implements PlaceBoatStrategy {
 
 	private ArrayList<BoardLocation> placeShip(GameState state) {
 		ArrayList<BoardLocation> locations = new ArrayList<BoardLocation>();
-		char player = state.getPlayerInTurn().getName().charAt(0);
+		char player = state.getLastPlayer().getName().charAt(0);
 		for (int y = yIndex; y > yIndex - shipSize; y--)
 			for (BoardLocation bl : state.getBoard().getLocations())
 				if (bl.getId().equals(player + coordinates[y] + xIndex)) {
