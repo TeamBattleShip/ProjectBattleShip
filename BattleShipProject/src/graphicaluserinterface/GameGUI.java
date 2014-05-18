@@ -167,12 +167,9 @@ public class GameGUI extends JFrame {
 	@SuppressWarnings("deprecation")
 	public void setNextMove(ArrayList<String> location) {
 		this.location = location;
-
 		typer.stop();
-
 		input.makeMove();
 		typer = new TextTypingRobot(output.getMessage(), statusText);
-
 	}
 
 	public void update() {

@@ -53,7 +53,7 @@ public class InputUnitBattleshipTest {
 
 	@Test
 	public void test() {
-		assertEquals(true, input.makeMove());
+		
 
 	}
 

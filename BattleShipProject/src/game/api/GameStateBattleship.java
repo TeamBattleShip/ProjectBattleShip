@@ -27,6 +27,7 @@ public class GameStateBattleship implements GameState, InputListener,
 	private RuleChecker ruleChecker;
 	private int playerHits = 0;
 	private int enemyHits = 0;
+	private int bugG = 0;
 
 	public GameStateBattleship() {
 		ArrayList<BoardLocation> locations = new ArrayList<BoardLocation>();
@@ -142,30 +143,37 @@ public class GameStateBattleship implements GameState, InputListener,
 
 	@Override
 	public Boolean proposeMove(Move move) {
-		if (ruleChecker.isValidMove(move, this)) {
-			if (move.getDestinations().size() == 1)
-				for (BoardLocation bl : board.getLocations())
-					if (bl.getId()
-							.equals(move.getDestinations().get(0).getId())) {
-						if (bl.getPiece() != null) {
-							move = new Move(move.getPlayer(),
-									new GamePiece("H"), move.getDestinations());
-							if (move.getPlayer().getName().equals("Player"))
-								playerHits++;
-							else
-								enemyHits++;
+		bugG = (bugG + 1) % 2;
 
-						} else
-							move = new Move(move.getPlayer(),
-									new GamePiece("M"), move.getDestinations());
-					}
+		if (bugG % 2 == 0) {
+			if (ruleChecker.isValidMove(move, this)) {
+				if (move.getDestinations().size() == 1)
+					for (BoardLocation bl : board.getLocations())
+						if (bl.getId().equals(
+								move.getDestinations().get(0).getId())) {
+							if (bl.getPiece() != null) {
+								move = new Move(move.getPlayer(),
+										new GamePiece("H"),
+										move.getDestinations());
+								if (move.getPlayer().getName().equals("Player"))
+									playerHits++;
+								else
+									enemyHits++;
 
-			move.execute();
-			turnCounter++;
-			message = "bajs";
-			return true;
+							} else
+								move = new Move(move.getPlayer(),
+										new GamePiece("M"),
+										move.getDestinations());
+						}
+
+				move.execute();
+				turnCounter++;
+				message = "bajs";
+				return true;
+			}
+			message = "Wrong move dude..!";
+			return false;
 		}
-		message = "Wrong move dude..!";
 		return false;
 	}
 
